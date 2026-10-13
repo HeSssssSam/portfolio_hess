@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حسام مقدم | پورتفولیو</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ====== رنگ‌ها را اینجا تغییر بده ====== */
+  :root {
+    --bg: #12100e;          /* رنگ پس‌زمینه */
+    --panel: #1c1917;       /* رنگ کارت‌ها */
+    --text: #f5efe6;        /* رنگ متن اصلی */
+    --muted: #a89f91;       /* رنگ متن ثانویه */
+    --accent: #e8a33d;      /* رنگ اصلی (کهربایی) */
+    --accent2: #3b82f6;     /* رنگ ثانویه */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Vazirmatn', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* ===== منو ===== */
+  nav {
+    position: fixed; top: 0; width: 100%;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(18,16,14,.85);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+  nav .logo { font-weight: 800; font-size: 1.2rem; color: var(--accent); }
+  nav ul { display: flex; gap: 1.5rem; list-style: none; }
+  nav a { color: var(--text); text-decoration: none; font-size: .95rem; }
+  nav a:hover { color: var(--accent); }
+  .menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+  /* ===== صفحه اصلی ===== */
+  header {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 6rem 1.5rem 3rem;
+    background: radial-gradient(ellipse at 50% -20%, rgba(232,163,61,.15), transparent 60%);
+  }
+  header h1 { font-size: clamp(2.2rem, 6vw, 4rem); margin-bottom: 1rem; font-weight: 800; }
+  header h1 span { color: var(--accent); }
+  /* قاب لوزی عکس پروفایل */
+  /* عکس پروفایل */
+  .profile-photo {
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 50px;
+    border: 4px solid var(--accent);
+    box-shadow: 0 8px 30px rgba(232,163,61,.25);
+    margin-bottom: 1.5rem;
+  }
+  /* دکمه‌های صفحه اصلی */
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn.secondary {
+    background: transparent; color: var(--accent);
+    border: 2px solid var(--accent);
+  }
+  header p { color: var(--muted); max-width: 520px; font-size: 1.05rem; }
+  .btn {
+    display: inline-block; margin-top: 2rem; padding: .8rem 2rem;
+    background: var(--accent); color: #12100e; font-weight: 700;
+    text-decoration: none; border-radius: 999px;
+    transition: transform .2s;
+  }
+  .btn:hover { transform: translateY(-3px); }
+
+  /* ===== بخش‌ها ===== */
+  section { padding: 5rem 1.5rem; max-width: 1000px; margin: 0 auto; }
+  section h2 { font-size: 1.8rem; margin-bottom: .5rem; font-weight: 800; }
+  section .sub { color: var(--muted); margin-bottom: 2.5rem; }
+
+  /* ===== پخش کننده یوتیوب ===== */
+  .video-wrap {
+    position: relative; width: 100%; aspect-ratio: 16/9;
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.08);
+    background: var(--panel);
+  }
+  .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .yt-link {
+    display: inline-block; margin-top: 1.2rem;
+    color: var(--accent); text-decoration: none; font-weight: 700;
+  }
+  .yt-link:hover { text-decoration: underline; }
+
+  /* ===== کارت‌ها ===== */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .card {
+    background: var(--panel); border-radius: 14px; padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,.06);
+    transition: transform .2s, border-color .2s;
+  }
+  .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+  .card .icon { font-size: 2rem; margin-bottom: .8rem; }
+  .card h3 { margin-bottom: .5rem; font-weight: 700; }
+  .card p { color: var(--muted); font-size: .95rem; }
+
+  /* ===== موسیقی ===== */
+  .music-band { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .instrument {
+    flex: 1 1 260px; background: var(--panel); border-radius: 14px; padding: 2rem;
+    text-align: center; border: 1px solid rgba(255,255,255,.06);
+  }
+  .instrument .big { font-size: 3.5rem; }
+  .instrument h3 { margin: .8rem 0 .3rem; font-weight: 700; }
+  .instrument p { color: var(--muted); font-size: .95rem; }
+
+  /* ===== تماس ===== */
+  .contact-box { text-align: center; }
+  .contact-box a { color: var(--accent); }
+
+  footer {
+    text-align: center; padding: 2rem; color: var(--muted);
+    border-top: 1px solid rgba(255,255,255,.06); font-size: .9rem;
+  }
+
+  /* ===== موبایل ===== */
+  @media (max-width: 640px) {
+    .menu-btn { display: block; }
+    nav ul {
+      display: none; position: absolute; top: 100%; right: 1rem;
+      flex-direction: column; background: var(--panel);
+      padding: 1rem 1.5rem; border-radius: 12px; gap: 1rem;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    nav ul.open { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<!-- منو -->
+<nav>
+  <div class="logo">🎸 حسام مقدم</div>
+  <button class="menu-btn" onclick="document.getElementById('links').classList.toggle('open')">☰</button>
+  <ul id="links">
+    <li><a href="#home">خانه</a></li>
+    <li><a href="#about">درباره من</a></li>
+    <li><a href="#projects">نمونه کارها</a></li>
+    <li><a href="#works">آثار موسیقی</a></li>
+    <li><a href="#music">سازها</a></li>
+    <li><a href="#contact">تماس</a></li>
+  </ul>
+</nav>
+
+<!-- صفحه اصلی -->
+<header id="home">
+  <img class="profile-photo" src="my-photo.png" alt="عکس حسام مقدم">
+  <h1>سلام، من <span>حسام مقدم</span> هستم</h1>
+  <p>طراح وب مبتدی با وایب کدینگ 🎨<br>نوازنده بلوز — گیتار و هارمونیکا 🎶</p>
+  <a class="btn" href="#works">دیدن آثار موسیقی</a>
+  <a class="btn secondary" href="#projects">🎨 طراحی سایت</a>
+</header>
+
+<!-- درباره من -->
+<section id="about">
+  <h2>درباره من</h2>
+  <p class="sub">دو علاقه، یک نفر.</p>
+  <p>من یک طراح وب مبتدی هستم که با <strong>وایب کدینگ</strong> یاد می‌گیرم —
+  سریع می‌سازم، آزمایش می‌کنم و یکی‌یکی وب را زیباتر می‌کنم.
+  وقتی دارم کد نمی‌نویسم، با <strong>گیتار</strong> و <strong>هارمونیکا</strong>
+  بلوز می‌نوازم و دنبال بهترین بند و گرووی دوازده‌بار هستم.</p>
+</section>
+
+<!-- نمونه کارهای طراحی وب - کارت‌ها را با پروژه‌های خودت جایگزین کن -->
+<section id="projects">
+  <h2>نمونه کارهای طراحی وب</h2>
+  <p class="sub">پروژه‌هایی که با وایب کدینگ ساخته‌ام.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🎨</div>
+      <h3>پروژه اول</h3>
+      <p>توضیح کوتاه پروژه‌ات — چه کاری می‌کند و چه چیزی یاد گرفتی.</p>
+      <a href="#" style="color:var(--accent);text-decoration:none;font-weight:700;">دیدن پروژه ←</a>
+    </div>
+    <div class="card">
+      <div class="icon">🌐</div>
+      <h3>پروژه دوم</h3>
+      <p>توضیح کوتاه پروژه‌ات — چه کاری می‌کند و چه چیزی یاد گرفتی.</p>
+      <a href="#" style="color:var(--accent);text-decoration:none;font-weight:700;">دیدن پروژه ←</a>
+    </div>
+    <div class="card">
+      <div class="icon">💡</div>
+      <h3>پروژه سوم</h3>
+      <p>توضیح کوتاه پروژه‌ات — چه کاری می‌کند و چه چیزی یاد گرفتی.</p>
+      <a href="#" style="color:var(--accent);text-decoration:none;font-weight:700;">دیدن پروژه ←</a>
+    </div>
+  </div>
+</section>
+
+<!-- آثار موسیقی - کانال یوتیوب HeSs Blues -->
+<section id="works">
+  <h2>آثار موسیقی</h2>
+  <p class="sub">ویدیوهای کانال یوتیوب من، HeSs Blues 🎵</p>
+  <div class="video-wrap">
+    <!-- لیست ویدیوهای کانال (به‌صورت خودکار آپدیت می‌شود) -->
+    <iframe
+      src="https://www.youtube.com/embed?listType=playlist&list=UUCLv0spcDUfXtwAhn1ojIDYQ"
+      title="آثار موسیقی حسام مقدم"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <a class="yt-link" href="https://www.youtube.com/channel/UCLv0spcDUfXtwAhn1ojIDYQ" target="_blank" rel="noopener">
+    📺 رفتن به کانال HeSs Blues در یوتیوب ←
+  </a>
+</section>
+
+<!-- سازها -->
+<section id="music">
+  <h2>گوشه بلوز</h2>
+  <p class="sub">وقتی کد تمام شد، نوبت سازها است.</p>
+  <div class="music-band">
+    <div class="instrument">
+      <div class="big">🎸</div>
+      <h3>گیتار</h3>
+      <p>بلوز آکوستیک و الکتریک. اسلاید، بند و ریتم‌های آرام.</p>
+    </div>
+    <div class="instrument">
+      <div class="big">🎷</div>
+      <h3>هارمونیکا</h3>
+      <p>هارپ بلوز با پوزیشن کراس‌هارپ. تُن مهم‌تر از سرعت است.</p>
+    </div>
+    <div class="instrument">
+      <div class="big">🎧</div>
+      <h3>گوش دادن</h3>
+      <p>همه ویدیوها در کانال HeSs Blues در دسترس هستند.</p>
+      <a href="https://www.youtube.com/channel/UCLv0spcDUfXtwAhn1ojIDYQ" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:700;">🎬 گوش دادن ←</a>
+    </div>
+  </div>
+</section>
+
+<!-- تماس -->
+<section id="contact" class="contact-box">
+  <h2>در ارتباط باشیم</h2>
+  <p class="sub">پروژه داری، کنسرتی برگزار می‌کنی، یا فقط می‌خواهی جام بزنی؟</p>
+  <p>ایمیل: <a href="mailto:hessammoqaddam1@gmail.com">hessammoqaddam1@gmail.com</a></p>
+</section>
+
+<footer>
+  © ۲۰۲۶ حسام مقدم — ساخته‌شده با HTML، CSS و کمی بلوز. 🎶<br>
+  📧 <a href="mailto:hessammoqaddam1@gmail.com" style="color:var(--accent);text-decoration:none;">hessammoqaddam1@gmail.com</a>
+</footer>
+
+</body>
+</html>
